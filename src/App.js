@@ -19,7 +19,11 @@ class App extends Component {
 
   componentDidMount() {
     const localContacts = storage.get('contacts');
-    if (localContacts) this.setState({ contacts: localContacts });
+    if (localContacts) {
+      this.setState({ contacts: localContacts });
+    } else {
+      storage.save('contacts', this.state.contacts);
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
